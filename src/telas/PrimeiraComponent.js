@@ -1,10 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-const PrimieraComponent = () => {
+const PrimieraComponent = (props) => {
   return (
     <View>
       <Text>Primeira Component</Text>
+      <Button
+        title="Navegar"
+        onPress={() => props.navigation.navigate("Inicial")}
+      />
     </View>
   );
 };

@@ -1,10 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-const TelaInicial = () => {
+const TelaInicial = (props) => {
+  console.log(props);
   return (
     <View>
       <Text>Inicial</Text>
+      <Button
+        title="Navegar"
+        onPress={() => props.navigation.navigate("Primeira")}
+      />
     </View>
   );
 };
