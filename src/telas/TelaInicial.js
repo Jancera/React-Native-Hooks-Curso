@@ -1,39 +1,31 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+} from "react-native";
 
 const TelaInicial = (props) => {
   console.log(props);
   return (
     <View style={styles.view}>
-      <Text style={StyleSheet.compose(styles.test1, styles.test2)}>
-        Inicial
-      </Text>
+      <Text style={styles.text}>Telas</Text>
       <Button
-        title="Navegar"
-        onPress={() => props.navigation.navigate("Primeira")}
+        title="Box Model"
+        onPress={() =>
+          props.navigation.navigate("Primeira")
+        }
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-    borderWidth: 5,
-    borderColor: "blue",
-  },
   text: {
-    fontSize: 20,
+    fontSize: 30,
     margin: 20,
-    borderWidth: 3,
-    borderColor: "red",
-    backgroundColor: "#BFBFBF",
-  },
-  test1: {
-    borderWidth: 3,
-  },
-  test2: {
-    borderColor: "red",
+    alignSelf: "center",
   },
 });
 

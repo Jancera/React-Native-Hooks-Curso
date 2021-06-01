@@ -10,8 +10,14 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Inicial">
-        <Stack.Screen name="Primeira" component={PrimieraComponent} />
-        <Stack.Screen name="Inicial" component={TelaInicial} />
+        <Stack.Screen
+          name="Primeira"
+          component={PrimieraComponent}
+        />
+        <Stack.Screen
+          name="Inicial"
+          component={TelaInicial}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
