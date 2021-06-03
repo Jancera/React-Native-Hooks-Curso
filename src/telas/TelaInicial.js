@@ -17,6 +17,12 @@ const TelaInicial = (props) => {
           props.navigation.navigate("Primeira")
         }
       />
+      <Button
+        title="Position"
+        onPress={() =>
+          props.navigation.navigate("Position")
+        }
+      />
     </View>
   );
 };

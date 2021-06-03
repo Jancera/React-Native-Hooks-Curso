@@ -6,7 +6,7 @@ import {
   Button,
 } from "react-native";
 
-const PrimieraComponent = (props) => {
+const PrimeiraComponent = (props) => {
   return (
     <View>
       <Text style={styles.text}>Box Model</Text>
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PrimieraComponent;
+export default PrimeiraComponent;
