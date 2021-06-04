@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import TelaInicial from "./src/telas/TelaInicial";
 import PrimeiraComponent from "./src/telas/PrimeiraComponent";
 import Position from "./src/telas/Position";
+import FlexBox from "./src/telas/FlexBox";
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ const App = () => {
           name="Position"
           component={Position}
         />
+        <Stack.Screen name="Flex Box" component={FlexBox} />
       </Stack.Navigator>
     </NavigationContainer>
   );

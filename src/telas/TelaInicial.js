@@ -23,6 +23,12 @@ const TelaInicial = (props) => {
           props.navigation.navigate("Position")
         }
       />
+      <Button
+        title="Flex Box"
+        onPress={() =>
+          props.navigation.navigate("Flex Box")
+        }
+      />
     </View>
   );
 };
