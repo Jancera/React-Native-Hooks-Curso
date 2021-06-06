@@ -13,22 +13,24 @@ const FlexBox = () => {
 
 const styles = StyleSheet.create({
   view: {
+    flex: 1,
     borderWidth: 3,
     borderColor: "blue",
-    flexDirection: "row-reverse",
+    flexDirection: "row",
+    justifyContent: "flex-start",
   },
   caixa1: {
-    fontSize: 30,
+    fontSize: 20,
     borderWidth: 3,
     borderColor: "red",
   },
   caixa2: {
-    fontSize: 30,
+    fontSize: 20,
     borderWidth: 3,
     borderColor: "red",
   },
   caixa3: {
-    fontSize: 30,
+    fontSize: 20,
     borderWidth: 3,
     borderColor: "red",
   },
