@@ -13,26 +13,27 @@ const FlexBox = () => {
 
 const styles = StyleSheet.create({
   view: {
-    flex: 1,
+    flex: 0.5,
     borderWidth: 3,
     borderColor: "blue",
-    flexDirection: "row",
-    justifyContent: "flex-start",
   },
   caixa1: {
     fontSize: 20,
     borderWidth: 3,
     borderColor: "red",
+    alignSelf: "flex-start",
   },
   caixa2: {
-    fontSize: 20,
+    fontSize: 30,
     borderWidth: 3,
     borderColor: "red",
+    alignSelf: "center",
   },
   caixa3: {
     fontSize: 20,
     borderWidth: 3,
     borderColor: "red",
+    alignSelf: "flex-end",
   },
 });
 
