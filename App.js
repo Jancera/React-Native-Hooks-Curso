@@ -7,6 +7,7 @@ import Position from "./src/telas/Position";
 import FlexBox from "./src/telas/FlexBox";
 import Button_Touchable from "./src/telas/Button_Touchable";
 import Imagem from "./src/telas/Imagem";
+import Scroll from "./src/telas/Scroll";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ const App = () => {
         />
         <Stack.Screen name="Flex Box" component={FlexBox} />
         <Stack.Screen name="Imagem" component={Imagem} />
+        <Stack.Screen name="Scroll" component={Scroll} />
       </Stack.Navigator>
     </NavigationContainer>
   );
