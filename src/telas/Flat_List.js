@@ -31,7 +31,17 @@ const Flat_List = () => {
           );
         }}
         keyExtractor={(elemento) => String(elemento.key)}
-        initialScrollIndex={2}
+        ListEmptyComponent={() => (
+          <View style={styles.emptyComponent}>
+            <Text style={{ color: "grey" }}>
+              Erro ao carregar os dados
+            </Text>
+          </View>
+        )}
+        horizontal
+        ItemSeparatorComponent={() => (
+          <View style={{ height: 20, width: 20 }} />
+        )}
       />
     </View>
   );
@@ -45,6 +55,16 @@ const styles = StyleSheet.create({
     width: 150,
     justifyContent: "center",
     alignItems: "center",
+  },
+  emptyComponent: {
+    height: 300,
+    width: "70%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 3,
+    alignSelf: "center",
+    borderColor: "grey",
+    borderRadius: 30,
   },
 });
 
