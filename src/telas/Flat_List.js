@@ -38,9 +38,17 @@ const Flat_List = () => {
             </Text>
           </View>
         )}
-        horizontal
-        ItemSeparatorComponent={() => (
-          <View style={{ height: 20, width: 20 }} />
+        ListHeaderComponentStyle={styles.cabecalho}
+        ListHeaderComponent={() => (
+          <View>
+            <Text>Cabeçalho</Text>
+          </View>
+        )}
+        ListFooterComponentStyle={styles.rodape}
+        ListFooterComponent={() => (
+          <View>
+            <Text>Rodapé</Text>
+          </View>
         )}
       />
     </View>
@@ -52,7 +60,6 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "blue",
     height: 200,
-    width: 150,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -65,6 +72,20 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderColor: "grey",
     borderRadius: 30,
+  },
+  cabecalho: {
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 3,
+    borderColor: "red",
+    height: 50,
+  },
+  rodape: {
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 3,
+    borderColor: "green",
+    height: 50,
   },
 });
 
