@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
 } from "react-native";
 
 const Flat_List = () => {
+  const [refreshing, setRefreshing] = useState(false);
   const amigos = [
     { nome: "Amigo 1", key: "1" },
     { nome: "Amigo 2", key: "2" },
@@ -15,6 +16,12 @@ const Flat_List = () => {
     { nome: "Amigo 5", key: "5" },
     { nome: "Amigo 6", key: "6" },
     { nome: "Amigo 7", key: "7" },
+  ];
+
+  const amigos2 = [
+    { nome: "Amigo 8", key: "8" },
+    { nome: "Amigo 9", key: "9" },
+    { nome: "Amigo 10", key: "10" },
   ];
 
   return (
@@ -50,6 +57,13 @@ const Flat_List = () => {
             <Text>Rodapé</Text>
           </View>
         )}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setRefreshing(true);
+          amigos.push(...amigos2);
+          setRefreshing(false);
+        }}
+        onViewableItemsChanged
       />
     </View>
   );
