@@ -63,7 +63,8 @@ const Flat_List = () => {
           amigos.push(...amigos2);
           setRefreshing(false);
         }}
-        onViewableItemsChanged
+        onEndReached={() => console.log("Disparado")}
+        onEndReachedThreshold={0.2}
       />
     </View>
   );
