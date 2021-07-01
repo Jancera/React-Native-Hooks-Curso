@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
+  Dimensions,
+  Button,
 } from "react-native";
 
+var { width, height } = Dimensions.get("window");
+
 const Flat_List = () => {
-  const [refreshing, setRefreshing] = useState(false);
+  const [state, setState] = useState(true);
+
+  const callback = useCallback(
+    () => console.log("Disparado"),
+    []
+  );
+
   const amigos = [
     { nome: "Amigo 1", key: "1" },
     { nome: "Amigo 2", key: "2" },
@@ -18,16 +28,13 @@ const Flat_List = () => {
     { nome: "Amigo 7", key: "7" },
   ];
 
-  const amigos2 = [
-    { nome: "Amigo 8", key: "8" },
-    { nome: "Amigo 9", key: "9" },
-    { nome: "Amigo 10", key: "10" },
-  ];
-
   return (
     <View>
       <FlatList
         data={amigos}
+        horizontal
+        pagingEnabled
+        keyExtractor={(elemento) => String(elemento.key)}
         renderItem={({ item, index }) => {
           return (
             <View style={styles.containerElement}>
@@ -37,34 +44,15 @@ const Flat_List = () => {
             </View>
           );
         }}
-        keyExtractor={(elemento) => String(elemento.key)}
-        ListEmptyComponent={() => (
-          <View style={styles.emptyComponent}>
-            <Text style={{ color: "grey" }}>
-              Erro ao carregar os dados
-            </Text>
-          </View>
-        )}
-        ListHeaderComponentStyle={styles.cabecalho}
-        ListHeaderComponent={() => (
-          <View>
-            <Text>Cabeçalho</Text>
-          </View>
-        )}
-        ListFooterComponentStyle={styles.rodape}
-        ListFooterComponent={() => (
-          <View>
-            <Text>Rodapé</Text>
-          </View>
-        )}
-        refreshing={refreshing}
-        onRefresh={() => {
-          setRefreshing(true);
-          amigos.push(...amigos2);
-          setRefreshing(false);
+        viewabilityConfig={{
+          viewAreaCoveragePercentThreshold: 50,
+          minimumViewTime: 0,
         }}
-        onEndReached={() => console.log("Disparado")}
-        onEndReachedThreshold={0.2}
+        onViewableItemsChanged={callback}
+      />
+      <Button
+        title="Pressione"
+        onPress={() => setState(!state)}
       />
     </View>
   );
@@ -75,6 +63,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "blue",
     height: 200,
+    width: width,
     justifyContent: "center",
     alignItems: "center",
   },
