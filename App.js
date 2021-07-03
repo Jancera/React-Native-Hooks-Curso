@@ -9,6 +9,7 @@ import Button_Touchable from "./src/telas/Button_Touchable";
 import Imagem from "./src/telas/Imagem";
 import Scroll from "./src/telas/Scroll";
 import Flat_List from "./src/telas/Flat_List";
+import CR from "./src/telas/CR";
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ const App = () => {
           name="FlatList"
           component={Flat_List}
         />
+        <Stack.Screen name="CR" component={CR} />
       </Stack.Navigator>
     </NavigationContainer>
   );

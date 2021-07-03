@@ -7,7 +7,6 @@ import {
 } from "react-native";
 
 const TelaInicial = (props) => {
-  console.log(props);
   return (
     <View style={styles.view}>
       <Text style={styles.text}>Telas</Text>
@@ -48,6 +47,10 @@ const TelaInicial = (props) => {
         onPress={() =>
           props.navigation.navigate("FlatList")
         }
+      />
+      <Button
+        title="CR"
+        onPress={() => props.navigation.navigate("CR")}
       />
     </View>
   );

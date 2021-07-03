@@ -16,9 +16,6 @@ const Scroll = () => {
       <Text>Scroll</Text>
       <ScrollView
         horizontal
-        onLayout={(event) =>
-          console.log(event.nativeEvent.layout)
-        }
         ref={scrollRef}
         decelerationRate="normal"
         showsVerticalScrollIndicator={false}
