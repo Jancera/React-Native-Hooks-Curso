@@ -52,6 +52,10 @@ const TelaInicial = (props) => {
         title="CR"
         onPress={() => props.navigation.navigate("CR")}
       />
+      <Button
+        title="State"
+        onPress={() => props.navigation.navigate("State")}
+      />
     </View>
   );
 };
