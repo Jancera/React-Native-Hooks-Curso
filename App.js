@@ -11,6 +11,7 @@ import Scroll from "./src/telas/Scroll";
 import Flat_List from "./src/telas/Flat_List";
 import CR from "./src/telas/CR";
 import State from "./src/telas/State";
+import Input from "./src/telas/Input";
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,7 @@ const App = () => {
         />
         <Stack.Screen name="CR" component={CR} />
         <Stack.Screen name="State" component={State} />
+        <Stack.Screen name="Input" component={Input} />
       </Stack.Navigator>
     </NavigationContainer>
   );
