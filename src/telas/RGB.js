@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import {
   View,
   Text,
@@ -7,41 +7,95 @@ import {
 } from "react-native";
 import RButton from "../component/RButton";
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "red":
+      return { ...state, red: state.red + action.payload };
+    case "green":
+      return {
+        ...state,
+        green: state.green + action.payload,
+      };
+    case "blue":
+      return {
+        ...state,
+        blue: state.blue + action.payload,
+      };
+  }
+};
+
 const RGB = () => {
   // "rgb(0,0,0)"
-  const [red, setRed] = useState(0);
-  const [green, setGreen] = useState(0);
-  const [blue, setBlue] = useState(0);
+
+  const [state, dispatch] = useReducer(reducer, {
+    red: 0,
+    green: 0,
+    blue: 0,
+  });
+
   return (
     <View>
       <View
         style={[
           styles.circulo,
           {
-            backgroundColor: `rgb(${red},${green},${blue})`,
+            backgroundColor: `rgb(${state.red},${state.green},${state.blue})`,
           },
         ]}
       />
 
       <Text style={styles.texto}>
-        Red: {red} Green:{green} Blue:{blue}
+        Red: {state.red} Green:{state.green} Blue:
+        {state.blue}
       </Text>
-
-      <RButton
-        color="red"
-        colorValue={red}
-        setColor={setRed}
-      />
-      <RButton
-        color="green"
-        colorValue={green}
-        setColor={setGreen}
-      />
-      <RButton
-        color="blue"
-        colorValue={blue}
-        setColor={setBlue}
-      />
+      <View style={styles.button}>
+        <Button
+          title="Aumentar Vermelho"
+          color="red"
+          onPress={() => {
+            dispatch({ type: "red", payload: 15 });
+          }}
+        />
+        <Button
+          title="Diminuir Vermelho"
+          color="red"
+          onPress={() => {
+            dispatch({ type: "red", payload: -15 });
+          }}
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Aumentar Verde"
+          color="green"
+          onPress={() => {
+            dispatch({ type: "green", payload: 15 });
+          }}
+        />
+        <Button
+          title="Diminuir Verde"
+          color="green"
+          onPress={() => {
+            dispatch({ type: "green", payload: -15 });
+          }}
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Aumentar Azul"
+          color="blue"
+          onPress={() => {
+            dispatch({ type: "blue", payload: 15 });
+          }}
+        />
+        <Button
+          title="Diminuir Azul"
+          color="blue"
+          onPress={() => {
+            dispatch({ type: "blue", payload: -15 });
+          }}
+        />
+      </View>
     </View>
   );
 };
@@ -60,6 +114,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
   },
+  button: { alignSelf: "center", flexDirection: "row" },
 });
 
 export default RGB;
