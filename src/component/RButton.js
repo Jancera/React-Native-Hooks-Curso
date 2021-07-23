@@ -6,7 +6,7 @@ import {
   Button,
 } from "react-native";
 
-const RButton = ({ color, colorValue, setColor }) => {
+const RButton = ({ color, dispatch }) => {
   let title = "";
   if (color === "red") {
     title = "vermelho";
@@ -22,22 +22,14 @@ const RButton = ({ color, colorValue, setColor }) => {
         title={`Aumentar ${title}`}
         color={color}
         onPress={() => {
-          if (colorValue + 15 > 255) {
-            setColor(255);
-          } else {
-            setColor(colorValue + 15);
-          }
+          dispatch({ type: color, payload: 15 });
         }}
       />
       <Button
         title={`Diminuir ${title}`}
         color={color}
         onPress={() => {
-          if (colorValue - 15 < 0) {
-            setColor(0);
-          } else {
-            setColor(colorValue - 15);
-          }
+          dispatch({ type: color, payload: -15 });
         }}
       />
     </View>

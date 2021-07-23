@@ -10,17 +10,43 @@ import RButton from "../component/RButton";
 const reducer = (state, action) => {
   switch (action.type) {
     case "red":
-      return { ...state, red: state.red + action.payload };
+      if (
+        state.red + action.payload > 255 ||
+        state.red + action.payload < 0
+      ) {
+        return state;
+      } else {
+        return {
+          ...state,
+          red: state.red + action.payload,
+        };
+      }
     case "green":
-      return {
-        ...state,
-        green: state.green + action.payload,
-      };
+      if (
+        state.green + action.payload > 255 ||
+        state.green + action.payload < 0
+      ) {
+        return state;
+      } else {
+        return {
+          ...state,
+          green: state.green + action.payload,
+        };
+      }
     case "blue":
-      return {
-        ...state,
-        blue: state.blue + action.payload,
-      };
+      if (
+        state.blue + action.payload > 255 ||
+        state.blue + action.payload < 0
+      ) {
+        return state;
+      } else {
+        return {
+          ...state,
+          blue: state.blue + action.payload,
+        };
+      }
+    default:
+      return state;
   }
 };
 
@@ -48,54 +74,9 @@ const RGB = () => {
         Red: {state.red} Green:{state.green} Blue:
         {state.blue}
       </Text>
-      <View style={styles.button}>
-        <Button
-          title="Aumentar Vermelho"
-          color="red"
-          onPress={() => {
-            dispatch({ type: "red", payload: 15 });
-          }}
-        />
-        <Button
-          title="Diminuir Vermelho"
-          color="red"
-          onPress={() => {
-            dispatch({ type: "red", payload: -15 });
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Aumentar Verde"
-          color="green"
-          onPress={() => {
-            dispatch({ type: "green", payload: 15 });
-          }}
-        />
-        <Button
-          title="Diminuir Verde"
-          color="green"
-          onPress={() => {
-            dispatch({ type: "green", payload: -15 });
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Aumentar Azul"
-          color="blue"
-          onPress={() => {
-            dispatch({ type: "blue", payload: 15 });
-          }}
-        />
-        <Button
-          title="Diminuir Azul"
-          color="blue"
-          onPress={() => {
-            dispatch({ type: "blue", payload: -15 });
-          }}
-        />
-      </View>
+      <RButton color="red" dispatch={dispatch} />
+      <RButton color="green" dispatch={dispatch} />
+      <RButton color="blue" dispatch={dispatch} />
     </View>
   );
 };
