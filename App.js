@@ -14,6 +14,7 @@ const App = () => {
         <Stack.Screen
           name="TelaInicial"
           component={TelaInicial}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Resultados"
