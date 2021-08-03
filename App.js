@@ -19,6 +19,7 @@ const App = () => {
         <Stack.Screen
           name="Resultados"
           component={Resultados}
+          options={{ headerShown: false }}
         />
 
         <Stack.Screen
