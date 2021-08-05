@@ -7,13 +7,36 @@ import {
   SafeAreaView,
   ImageBackground,
   TextInput,
+  Keyboard,
 } from "react-native";
 import { Ionicons } from "react-native-vector-icons";
+import axios from "axios";
+import API_KEY from "../API_KEY";
 
-const Resultados = ({ route }) => {
+const Resultados = ({ navigation, route }) => {
   const escolha = route.params.escolha;
-  const link = `api.giphy.com/v1/${escolha}/search`;
+  const link = `https://api.giphy.com/v1/${escolha}/search`;
   const [text, setText] = useState("");
+
+  const [data, setData] = useState([]);
+
+  const solicitar = async (text) => {
+    Keyboard.dismiss();
+    try {
+      const resultados = await axios.get(link, {
+        params: {
+          api_key: API_KEY,
+          q: text,
+          lang: "pt",
+        },
+      });
+      console.log(resultados.data.data);
+      setData(resultados.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <ImageBackground
       source={require("../../assets/BG.png")}
@@ -25,7 +48,9 @@ const Resultados = ({ route }) => {
             name="chevron-back"
             size={40}
             color="white"
-            onPress={() => {}}
+            onPress={() => {
+              navigation.pop();
+            }}
           />
           <TextInput
             style={styles.input}
@@ -39,7 +64,9 @@ const Resultados = ({ route }) => {
             name="search"
             size={40}
             color="white"
-            onPress={() => {}}
+            onPress={() => {
+              solicitar(text);
+            }}
           />
         </View>
       </SafeAreaView>
