@@ -8,8 +8,11 @@ import {
   ImageBackground,
   TextInput,
   Keyboard,
+  FlatList,
+  Image,
+  Dimensions,
 } from "react-native";
-import { Ionicons } from "react-native-vector-icons";
+import Cabecalho from "../components/Cabecalho";
 import axios from "axios";
 import API_KEY from "../API_KEY";
 
@@ -43,36 +46,34 @@ const Resultados = ({ navigation, route }) => {
       style={styles.container}
     >
       <SafeAreaView style={styles.view}>
-        <View style={styles.cabecalho}>
-          <Ionicons
-            name="chevron-back"
-            size={40}
-            color="white"
-            onPress={() => {
-              navigation.pop();
-            }}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Pesquisar"
-            autoCapitalize="none"
-            autoCorrect={false}
-            value={text}
-            onChangeText={(value) => setText(value)}
-          />
-          <Ionicons
-            name="search"
-            size={40}
-            color="white"
-            onPress={() => {
-              solicitar(text);
-            }}
-          />
-        </View>
+        <Cabecalho
+          navigation={navigation}
+          text={text}
+          setText={setText}
+          solicitar={solicitar}
+        />
+        <FlatList
+          data={data}
+          keyExtractor={(element) => element.id}
+          numColumns={2}
+          renderItem={({ item }) => {
+            return (
+              <Image
+                style={styles.image}
+                source={{
+                  uri: item.images.preview_gif.url,
+                }}
+              />
+            );
+          }}
+        />
       </SafeAreaView>
     </ImageBackground>
   );
 };
+
+const { width, height } = Dimensions.get("window");
+const IMAGE_WIDTH = width;
 
 const styles = StyleSheet.create({
   container: {
@@ -81,16 +82,9 @@ const styles = StyleSheet.create({
   view: {
     marginTop: StatusBar.currentHeight,
   },
-  cabecalho: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  input: {
-    flex: 1,
-    backgroundColor: "white",
-    borderRadius: 25,
-    fontSize: 20,
-    paddingHorizontal: 20,
+  image: {
+    width: IMAGE_WIDTH / 2,
+    height: IMAGE_WIDTH / 2,
   },
 });
 
