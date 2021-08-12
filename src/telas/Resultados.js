@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import {
-  View,
-  Text,
   StyleSheet,
   StatusBar,
   SafeAreaView,
   ImageBackground,
-  TextInput,
   Keyboard,
   FlatList,
   Image,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 import Cabecalho from "../components/Cabecalho";
 import axios from "axios";
@@ -58,12 +56,20 @@ const Resultados = ({ navigation, route }) => {
           numColumns={2}
           renderItem={({ item }) => {
             return (
-              <Image
-                style={styles.image}
-                source={{
-                  uri: item.images.preview_gif.url,
-                }}
-              />
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("Detalhes", {
+                    item: item,
+                  })
+                }
+              >
+                <Image
+                  style={styles.image}
+                  source={{
+                    uri: item.images.preview_gif.url,
+                  }}
+                />
+              </TouchableOpacity>
             );
           }}
         />
