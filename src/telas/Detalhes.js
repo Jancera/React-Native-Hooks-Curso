@@ -5,6 +5,8 @@ import {
   StyleSheet,
   StatusBar,
   SafeAreaView,
+  ImageBackground,
+  Image,
 } from "react-native";
 import { Ionicons } from "react-native-vector-icons";
 
