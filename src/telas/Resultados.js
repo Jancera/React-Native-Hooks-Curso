@@ -23,6 +23,8 @@ const Resultados = ({ navigation, route }) => {
 
   const solicitar = async (text) => {
     Keyboard.dismiss();
+    setShowMessage(false);
+    setIsLoading(true);
     try {
       const resultados = await axios.get(link, {
         params: {
@@ -32,6 +34,7 @@ const Resultados = ({ navigation, route }) => {
         },
       });
       console.log(resultados.data.data);
+      setIsLoading(false);
       setData(resultados.data.data);
     } catch (err) {
       console.log(err);
@@ -79,7 +82,8 @@ const Resultados = ({ navigation, route }) => {
 };
 
 const { width, height } = Dimensions.get("window");
-const IMAGE_WIDTH = width;
+const COLUMN_WIDTH = width / 2;
+const IMAGE_WIDTH = COLUMN_WIDTH * 0.9;
 
 const styles = StyleSheet.create({
   container: {
@@ -89,8 +93,9 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
   },
   image: {
-    width: IMAGE_WIDTH / 2,
-    height: IMAGE_WIDTH / 2,
+    width: IMAGE_WIDTH,
+    height: IMAGE_WIDTH,
+    margin: IMAGE_WIDTH * 0.05,
   },
 });
 

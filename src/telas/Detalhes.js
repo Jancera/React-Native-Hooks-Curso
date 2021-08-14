@@ -7,6 +7,8 @@ import {
   SafeAreaView,
   ImageBackground,
   Image,
+  TouchableOpacity,
+  Linking,
 } from "react-native";
 import { Ionicons } from "react-native-vector-icons";
 
@@ -27,7 +29,7 @@ const Detalhes = ({ navigation, route }) => {
               navigation.pop();
             }}
           />
-          <Text style={styles.texto}>Detalhes</Text>
+          <Text style={styles.texto}>Resultados</Text>
         </View>
 
         <View style={styles.imageContainer}>
@@ -38,8 +40,20 @@ const Detalhes = ({ navigation, route }) => {
           />
         </View>
 
-        <Text style={styles.texto}>{data.title}</Text>
-        <Ionicons name="globe" size={40} color="white" />
+        <View style={styles.textContainer}>
+          <Text style={styles.texto}>{data.title}</Text>
+          <TouchableOpacity
+            onPress={() =>
+              Linking.openURL(data.images.original.url)
+            }
+          >
+            <Ionicons
+              name="globe"
+              size={40}
+              color="white"
+            />
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -53,6 +67,12 @@ const styles = StyleSheet.create({
   texto: {
     color: "white",
     fontSize: 22,
+    width: "80%",
+  },
+  textContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    padding: 10,
   },
   textoTitulo: {
     color: "white",
