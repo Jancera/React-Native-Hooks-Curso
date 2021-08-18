@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   headerText: {
-    fontSize: 16,
+    fontSize: 20,
     color: "white",
     width: "80%",
     textAlign: "center",

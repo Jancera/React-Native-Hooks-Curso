@@ -18,6 +18,7 @@ import axios from "axios";
 import API_KEY from "../API_KEY";
 import TextoInfo from "../components/TextoInfo";
 import Loading from "../components/Loading";
+import Erro from "../components/Erro";
 
 const Resultados = ({ navigation, route }) => {
   const escolha = route.params.escolha;
@@ -25,11 +26,13 @@ const Resultados = ({ navigation, route }) => {
   const [text, setText] = useState("");
   const [showMessage, setShowMessage] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const [data, setData] = useState([]);
 
   const solicitar = async (text) => {
     Keyboard.dismiss();
+    showError && setShowError(false);
     setShowMessage(false);
     setIsLoading(true);
     try {
@@ -40,11 +43,11 @@ const Resultados = ({ navigation, route }) => {
           lang: "pt",
         },
       });
-      console.log(resultados.data.data);
       setIsLoading(false);
       setData(resultados.data.data);
     } catch (err) {
-      console.log(err);
+      setIsLoading(false);
+      setShowError(true);
     }
   };
 
@@ -68,6 +71,7 @@ const Resultados = ({ navigation, route }) => {
             <>
               <TextoInfo showMessage={showMessage} />
               <Loading isLoading={isLoading} />
+              <Erro showError={showError} />
             </>
           }
           renderItem={({ item }) => {
@@ -109,6 +113,9 @@ const styles = StyleSheet.create({
     width: IMAGE_WIDTH,
     height: IMAGE_WIDTH,
     margin: IMAGE_WIDTH * 0.05,
+  },
+  rodape: {
+    marginBottom: 80,
   },
 });
 
