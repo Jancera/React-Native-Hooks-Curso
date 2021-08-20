@@ -20,6 +20,8 @@ import TextoInfo from "../components/TextoInfo";
 import Loading from "../components/Loading";
 import Erro from "../components/Erro";
 
+let pagina = 0;
+
 const Resultados = ({ navigation, route }) => {
   const escolha = route.params.escolha;
   const link = `https://api.giphy.com/v1/${escolha}/search`;
@@ -41,10 +43,13 @@ const Resultados = ({ navigation, route }) => {
           api_key: API_KEY,
           q: text,
           lang: "pt",
+          limit: 20,
+          offset: pagina * 20,
         },
       });
+      pagina++;
       setIsLoading(false);
-      setData(resultados.data.data);
+      setData([...data, ...resultados.data.data]);
     } catch (err) {
       setIsLoading(false);
       setShowError(true);
@@ -67,13 +72,16 @@ const Resultados = ({ navigation, route }) => {
           data={data}
           keyExtractor={(element) => element.id}
           numColumns={2}
-          ListHeaderComponent={
+          onEndReachedThreshold={0.05}
+          onEndReached={solicitar}
+          ListFooterComponent={
             <>
               <TextoInfo showMessage={showMessage} />
               <Loading isLoading={isLoading} />
               <Erro showError={showError} />
             </>
           }
+          ListFooterComponentStyle={styles.rodape}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity

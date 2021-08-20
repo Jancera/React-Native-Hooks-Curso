@@ -42,6 +42,7 @@ const Cabecalho = ({
           name="search"
           size={40}
           color="white"
+          style={styles.busca}
           onPress={() => {
             searchedText = text;
             solicitar(text);
@@ -82,6 +83,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "white",
     fontWeight: "bold",
+  },
+  busca: {
+    marginHorizontal: 5,
   },
 });
 
