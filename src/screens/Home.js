@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Teste from "../components/Teste";
-import { Provider } from "../context/dataContext";
+import { Provider, Context } from "../context/dataContext";
 
 const Home = () => {
+  const data = useContext(Context);
   return (
     <View>
       <Text>Home</Text>
-      <Provider>
-        <Teste />
-      </Provider>
+      <Text>{data}</Text>
+      <Teste />
     </View>
   );
 };
