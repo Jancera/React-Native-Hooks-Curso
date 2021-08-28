@@ -9,7 +9,7 @@ import Teste from "../components/Teste";
 import { Provider, Context } from "../context/dataContext";
 
 const Home = () => {
-  const actualState = useContext(Context);
+  const actualState = useContext(Context); // Você pode usar destructuring => {state, dispatch}
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
