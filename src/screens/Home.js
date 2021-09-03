@@ -6,44 +6,31 @@ import {
   Button,
 } from "react-native";
 import Teste from "../components/Teste";
-import { Provider, Context } from "../context/dataContext";
+import { Context } from "../context/dataContext";
 
 const Home = () => {
-  const actualState = useContext(Context); // Você pode usar destructuring => const {state, dispatch} = useContext(Context)
+  const { state, aumentar, toggle, acessarAPI } =
+    useContext(Context); // Você pode usar destructuring => const {state, dispatch} = useContext(Context)
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        {actualState.state.value}
-      </Text>
+      <Text style={styles.text}>{state.value}</Text>
       <Button
         title="Aumentar"
-        onPress={() =>
-          actualState.dispatch({
-            type: "aumentar",
-            payload: 1,
-          })
-        }
+        onPress={() => {
+          acessarAPI();
+          aumentar(5);
+        }}
       />
-      {actualState.state.showMessage ? (
+      {state.showMessage ? (
         <Text>Mensagem que não pode ser mostrada</Text>
       ) : null}
       <Button
         title="Mostrar mensagem"
-        onPress={() =>
-          actualState.dispatch({
-            type: "toggle",
-            payload: true,
-          })
-        }
+        onPress={() => toggle(true)}
       />
       <Button
         title="Ocultar mensagem"
-        onPress={() =>
-          actualState.dispatch({
-            type: "toggle",
-            payload: false,
-          })
-        }
+        onPress={() => toggle(false)}
       />
     </View>
   );
